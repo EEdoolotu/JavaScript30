@@ -28,6 +28,29 @@
       { first: 'Hanna', last: 'Hammarström', year: 1829, passed: 1909 }
     ];
 
+    let oldInventors = inventors.filter(inventor => inventor.year >= 1500 && inventor.year < 1600);
+    console.log(oldInventors)
+
+    const names = inventors.map(inventor => `${inventor.first} ${inventor.last}`)
+    console.log(names)
+
+    const sortedAges = inventors.sort((a, b) => a.year > b.year ? 1 : -1)
+    console.log(sortedAges)
+
+    const yearsLived = inventors.reduce((totalYears, inventor) => {
+      const timeOnEarth = inventor.passed - inventor.year
+      return totalYears += timeOnEarth
+    }, 0)
+
+    console.log(yearsLived)
+
+    const sortedYearsAlive = inventors.sort((a, b) => {
+      const a_age = a.passed - a.year
+      const b_age = b.passed - b.year
+      return a_age - b_age;
+    })
+
+    console.log(sortedYearsAlive)
     const people = [
       'Bernhard, Sandra', 'Bethea, Erin', 'Becker, Carl', 'Bentsen, Lloyd', 'Beckett, Samuel', 'Blake, William', 'Berger, Ric', 'Beddoes, Mick', 'Beethoven, Ludwig',
       'Belloc, Hilaire', 'Begin, Menachem', 'Bellow, Saul', 'Benchley, Robert', 'Blair, Robert', 'Benenson, Peter', 'Benjamin, Walter', 'Berlin, Irving',
@@ -36,6 +59,15 @@
       'Billings, Josh', 'Birrell, Augustine', 'Blair, Tony', 'Beecher, Henry', 'Biondo, Frank'
     ];
     
+    const sortedPeople = people.sort((a, b) => {
+      const [alastName, afirstName] = a.split(", ")
+      const [blastName, bfirstName] = b.split(", ")
+
+      return alastName > blastName ? 1 : -1
+    })
+
+    console.log(sortedPeople)
+
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
 
@@ -60,6 +92,16 @@
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+
+    const automobiles = data.reduce((obj, item) => {
+      if (!obj[item]) {
+        obj[item] = 0;
+      }
+      obj[item]++
+      return obj
+    }, {})
+
+    console.log(automobiles)
 
   </script>
 </body>
